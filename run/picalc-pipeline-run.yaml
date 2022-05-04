@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: picalc-pr-
+spec:
+  pipelineRef:
+    name: build-and-deploy-pipeline
+  params:
+    - name: gitUrl
+      value: https://github.com/IBM/tekton-tutorial
+    - name: gitRevision
+      value: beta-update
+    - name: imageUrl
+      value: quay-dev-sec-ops-registry-quay-openshift-infra.apps.ocp4-8.infocepo.com/fherhar/picalc
+    - name: imageTag
+      value: "latest"
+  serviceAccountName: pipeline-account
+  workspaces:
+    - name: git-source
+      persistentVolumeClaim:
+        claimName: picalc-source-pvc
