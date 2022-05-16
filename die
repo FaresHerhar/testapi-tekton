@@ -1,4 +1,6 @@
 #!/bin/sh
-oc delete role/pipeline-role rolebinding/pipeline-role-binding secrets/ibm-registry-secret secrets/kube-api-secret
-tkn task delete git-clone kaniko
-tkn pipeline delete build-and-deploy-pipeline
+oc delete -f tasks/
+oc delete -f pipeline/
+
+oc delete -f pipeline-account.yaml
+oc delete -f picalc-pipeline-pvc.yaml
