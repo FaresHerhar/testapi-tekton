@@ -1,9 +1,5 @@
 #!/bin/sh
-oc apply -f tasks/
-oc apply -f pipeline/
-
-# oc create secret generic ibm-registry-secret --type="kubernetes.io/basic-auth" --from-literal=username="fherhar+tekton" --from-literal=password="RLX5YUZD3PY6E8JLWNFXAEX4ATO9813NUDWUM880BGG385N2YFOBS2BY9A29O2ZO"
-# oc annotate secret ibm-registry-secret tekton.dev/docker-0="quay-dev-sec-ops-registry-quay-openshift-infra.apps.ocp4-8.infocepo.com"
-
-oc apply -f pipeline-account.yaml
-oc apply -f picalc-pipeline-pvc.yaml
+kubectl apply -f pipeline-account.yaml
+kubectl apply -f picalc-pipeline-pvc.yaml
+kubectl apply -f tasks/
+kubectl apply -f pipeline/

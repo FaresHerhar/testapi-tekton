@@ -1,6 +1,5 @@
 #!/bin/sh
-oc delete -f tasks/
-oc delete -f pipeline/
-
-oc delete -f pipeline-account.yaml
-oc delete -f picalc-pipeline-pvc.yaml
+kubectl delete -f tasks/
+kubectl delete -f pipeline/
+kubectl delete -f pipeline-account.yaml
+kubectl delete -f picalc-pipeline-pvc.yaml
