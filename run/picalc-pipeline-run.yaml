@@ -3,18 +3,19 @@ kind: PipelineRun
 metadata:
   generateName: picalc-pr-
 spec:
+  serviceAccountName: tekton-bot
+  serviceAccountName: gitlab-bot
   pipelineRef:
     name: build-and-deploy-pipeline
   params:
     - name: gitUrl
-      value: https://github.com/IBM/tekton-tutorial
+      value: https://gitlab.com/FaresHerhar/testapi
     - name: gitRevision
-      value: beta-update
+      value: master
     - name: imageUrl
-      value: quay-dev-sec-ops-registry-quay-openshift-infra.apps.ocp4-8.infocepo.com/fherhar/picalc
+      value: quay-dev-sec-ops-registry-quay-openshift-infra.apps.ocp4-8.infocepo.com/fherhar/testapi
     - name: imageTag
       value: "latest"
-  serviceAccountName: pipeline-account
   workspaces:
     - name: git-source
       persistentVolumeClaim:
