@@ -21,7 +21,7 @@ secrets:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: tekton-bot-secret
+  name: registry-bot-secret
 data:
   .dockerconfigjson: ewogICJhdXRocyI6IHsKICAgICJxdWF5LWRldi1zZWMtb3BzLXJlZ2lzdHJ5LXF1YXktb3BlbnNoaWZ0LWluZnJhLmFwcHMub2NwNC04LmluZm9jZXBvLmNvbSI6IHsKICAgICAgImF1dGgiOiAiWm1obGNtaGhjaXQwWld0MGIyNDZVa3hZTlZsVldrUXpVRmsyUlRoS1RGZE9SbGhCUlZnMFFWUlBPVGd4TTA1VlJGZFZUVGc0TUVKSFJ6TTROVTR5V1VaUFFsTXlRbGs1UVRJNVR6SmFUdz09IiwKICAgICAgImVtYWlsIjogIiIKICAgIH0KICB9Cn0=
 type: kubernetes.io/dockerconfigjson
@@ -30,11 +30,11 @@ type: kubernetes.io/dockerconfigjson
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: tekton-bot
+  name: registry-bot
 secrets:
-- name: tekton-bot-secret
+- name: registry-bot-secret
 imagePullSecrets:
-- name: tekton-bot-secret
+- name: registry-bot-secret
 
 ---
 apiVersion: v1
@@ -42,7 +42,7 @@ kind: Secret
 metadata:
   name: kube-api-secret
   annotations:
-    kubernetes.io/service-account.name: tekton-bot
+    kubernetes.io/service-account.name: registry-bot
 type: kubernetes.io/service-account-token
 
 ---
@@ -69,6 +69,6 @@ roleRef:
   name: pipeline-role
 subjects:
 - kind: ServiceAccount
-  name: tekton-bot
+  name: registry-bot
 - kind: ServiceAccount
   name: gitlab-bot
