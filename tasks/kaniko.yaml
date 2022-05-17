@@ -40,7 +40,7 @@ spec:
     - --destination=$(params.IMAGE)
     - --oci-layout-path=$(workspaces.source.path)/image-digest
     securityContext:
-      runAsUser: 1000
+      privileged: true
   - name: write-digest
     workingDir: $(workspaces.source.path)
     image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/imagedigestexporter:v0.35.0
