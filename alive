@@ -1,5 +1,8 @@
 #!/bin/sh
-kubectl apply -f pipeline-account.yaml
 kubectl apply -f picalc-pipeline-pvc.yaml
+kubectl apply -f secrets/
 kubectl apply -f tasks/
 kubectl apply -f pipeline/
+
+sleep 3
+kubectl create -f run/picalc-pipeline-run.yaml 

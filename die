@@ -1,5 +1,5 @@
 #!/bin/sh
 kubectl delete -f tasks/
 kubectl delete -f pipeline/
-kubectl delete -f pipeline-account.yaml
+kubectl delete -f secrets/
 kubectl delete -f picalc-pipeline-pvc.yaml
