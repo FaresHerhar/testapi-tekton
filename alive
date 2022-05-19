@@ -4,5 +4,4 @@ kubectl apply -n tekton-test -f secrets/
 kubectl apply -n tekton-test -f tasks/
 kubectl apply -n tekton-test -f pipeline/
 
-sleep 3
 kubectl create -n tekton-test -f run/picalc-pipeline-run.yaml 

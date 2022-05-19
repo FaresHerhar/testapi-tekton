@@ -16,6 +16,8 @@ spec:
       value: quay.io/fherhar/testapi
     - name: imageFormat
       value: docker
+    - name: registryBotSecret
+      value: registry-bot-secret
   workspaces:
     - name: shared-workspace
       persistentVolumeClaim:
