@@ -13,10 +13,10 @@ spec:
     default: master
   - name: imageUrl
     description: Image name including repository
+  - name: imageTag
+    description: Image tag
   - name: imageFormat
     description: oci or docker format
-  - name: registryBotSecret
-    description: secret push image
   tasks:
   - name: fetch-repository
     taskRef:
@@ -31,20 +31,18 @@ spec:
       value: "true"
     - name: revision
       value: $(params.gitRevision)
-  - name: build-image
-    taskRef:
-      name: buildah
-    params:
-    - name: TLSVERIFY
-      value: "false"
-    - name: IMAGE
-      value: $(params.imageUrl)
-    - name: FORMAT
-      value: $(params.imageFormat)
-    - name: IMAGE_PUSH_SECRET_NAME
-      value: $(params.registryBotSecret)
-    workspaces:
-    - name: source
-      workspace: shared-workspace
-    runAfter:
-    - fetch-repository
+  # - name: build-image
+  #   taskRef:
+  #     name: buildah
+  #   params:
+  #   - name: TLSVERIFY
+  #     value: "false"
+  #   - name: IMAGE
+  #     value: $(params.imageUrl):$(params.imageTag)
+  #   - name: FORMAT
+  #     value: $(params.imageFormat)
+  #   workspaces:
+  #   - name: source
+  #     workspace: shared-workspace
+  #   runAfter:
+  #   - fetch-repository

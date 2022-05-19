@@ -1,7 +1,7 @@
 #!/bin/sh
-kubectl apply -n tekton-test -f picalc-pipeline-pvc.yaml
-kubectl apply -n tekton-test -f secrets/
+kubectl apply -n tekton-test -f testapi-pipeline-pvc.yaml
+kubectl apply -n tekton-test -f testapi-pipeline-account.yaml
 kubectl apply -n tekton-test -f tasks/
 kubectl apply -n tekton-test -f pipeline/
 
-kubectl create -n tekton-test -f run/picalc-pipeline-run.yaml 
+kubectl create -n tekton-test -f run/testapi-pipeline-run.yaml 

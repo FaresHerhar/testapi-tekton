@@ -52,8 +52,6 @@ spec:
   - name: SKIP_PUSH
     description: Skip pushing the built image
     default: "false"
-  - name: IMAGE_PUSH_SECRET_NAME
-    description: Kubernetes secrets contain image push username and password
   workspaces:
   - name: source
   - name: sslcertdir
@@ -84,7 +82,6 @@ spec:
       [[ "$(params.SKIP_PUSH)" == "true" ]] && echo "Push skipped" && exit 0
       [[ "$(workspaces.sslcertdir.bound)" == "true" ]] && CERT_DIR_FLAG="--cert-dir $(workspaces.sslcertdir.path)"
       buildah ${CERT_DIR_FLAG} --storage-driver=$(params.STORAGE_DRIVER) push \
-        --creds ${USERNAME}:${PASSWORD} \
         $(params.PUSH_EXTRA_ARGS) --tls-verify=$(params.TLSVERIFY) \
         --digestfile $(workspaces.source.path)/image-digest $(params.IMAGE) \
         docker://$(params.IMAGE)
@@ -93,19 +90,7 @@ spec:
       mountPath: /var/lib/containers
     securityContext:
       privileged: true
-
-    env:
-      - name: USERNAME
-        valueFrom:
-          secretKeyRef:
-            name: $(params.IMAGE_PUSH_SECRET_NAME)
-            key: username
-      - name: PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: $(params.IMAGE_PUSH_SECRET_NAME)
-            key: password
-
+      
   - name: digest-to-results
     image: $(params.BUILDER_IMAGE)
     script: cat $(workspaces.source.path)/image-digest | tee /tekton/results/IMAGE_DIGEST

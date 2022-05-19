@@ -1,5 +1,5 @@
 #!/bin/sh
 kubectl delete -n tekton-test -f tasks/
 kubectl delete -n tekton-test -f pipeline/
-kubectl delete -n tekton-test -f secrets/
-kubectl delete -n tekton-test -f picalc-pipeline-pvc.yaml
+kubectl delete -n tekton-test -f testapi-pipeline-account.yaml
+kubectl delete -n tekton-test -f testapi-pipeline-pvc.yaml
