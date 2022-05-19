@@ -1,5 +1,5 @@
 #!/bin/sh
-kubectl delete -f tasks/
-kubectl delete -f pipeline/
-kubectl delete -f secrets/
-kubectl delete -f picalc-pipeline-pvc.yaml
+kubectl delete -n tekton-test -f tasks/
+kubectl delete -n tekton-test -f pipeline/
+kubectl delete -n tekton-test -f secrets/
+kubectl delete -n tekton-test -f picalc-pipeline-pvc.yaml

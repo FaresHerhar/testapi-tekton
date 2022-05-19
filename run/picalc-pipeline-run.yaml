@@ -13,7 +13,7 @@ spec:
     - name: gitRevision
       value: master
     - name: imageUrl
-      value: quay-dev-sec-ops-registry-quay-openshift-infra.apps.ocp4-8.infocepo.com/fherhar/testapi
+      value: quay.io/fherhar/testapi
     - name: imageFormat
       value: docker
   workspaces:

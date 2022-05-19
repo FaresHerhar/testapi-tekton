@@ -1,8 +1,8 @@
 #!/bin/sh
-kubectl apply -f picalc-pipeline-pvc.yaml
-kubectl apply -f secrets/
-kubectl apply -f tasks/
-kubectl apply -f pipeline/
+kubectl apply -n tekton-test -f picalc-pipeline-pvc.yaml
+kubectl apply -n tekton-test -f secrets/
+kubectl apply -n tekton-test -f tasks/
+kubectl apply -n tekton-test -f pipeline/
 
 sleep 3
-kubectl create -f run/picalc-pipeline-run.yaml 
+kubectl create -n tekton-test -f run/picalc-pipeline-run.yaml 
