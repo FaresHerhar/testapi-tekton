@@ -31,18 +31,18 @@ spec:
       value: "true"
     - name: revision
       value: $(params.gitRevision)
-  # - name: build-image
-  #   taskRef:
-  #     name: buildah
-  #   params:
-  #   - name: TLSVERIFY
-  #     value: "false"
-  #   - name: IMAGE
-  #     value: $(params.imageUrl):$(params.imageTag)
-  #   - name: FORMAT
-  #     value: $(params.imageFormat)
-  #   workspaces:
-  #   - name: source
-  #     workspace: shared-workspace
-  #   runAfter:
-  #   - fetch-repository
+  - name: build-image
+    taskRef:
+      name: buildah
+    params:
+    - name: TLSVERIFY
+      value: "false"
+    - name: IMAGE
+      value: $(params.imageUrl):$(params.imageTag)
+    - name: FORMAT
+      value: $(params.imageFormat)
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    runAfter:
+    - fetch-repository

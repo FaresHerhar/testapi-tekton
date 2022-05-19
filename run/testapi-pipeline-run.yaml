@@ -20,4 +20,4 @@ spec:
   workspaces:
     - name: shared-workspace
       persistentVolumeClaim:
-        claimName: picalc-source-pvc
+        claimName: testapi-source-pvc
